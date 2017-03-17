@@ -95,4 +95,7 @@ public class Asteroid extends Scrollable {
         }
         return false;
     }
+
+
+
 }

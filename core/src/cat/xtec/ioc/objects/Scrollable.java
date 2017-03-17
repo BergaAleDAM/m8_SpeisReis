@@ -61,5 +61,11 @@ public class Scrollable extends Actor {
         return height;
     }
 
+    public float getVelocity() {
+        return velocity;
+    }
 
+    public void setVelocity(float velocity) {
+        this.velocity = velocity;
+    }
 }

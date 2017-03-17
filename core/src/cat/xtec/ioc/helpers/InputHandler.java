@@ -6,8 +6,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import java.util.ArrayList;
+
+import cat.xtec.ioc.objects.Asteroid;
+import cat.xtec.ioc.objects.Background;
+import cat.xtec.ioc.objects.ScrollHandler;
+import cat.xtec.ioc.objects.Scrollable;
 import cat.xtec.ioc.objects.Spacecraft;
 import cat.xtec.ioc.screens.GameScreen;
+import cat.xtec.ioc.utils.Settings;
 
 public class InputHandler implements InputProcessor {
 
@@ -17,6 +24,9 @@ public class InputHandler implements InputProcessor {
     private Spacecraft spacecraft;
     private GameScreen screen;
     private Vector2 stageCoord;
+    private Scrollable s;
+
+
 
     private Stage stage;
 
@@ -26,6 +36,7 @@ public class InputHandler implements InputProcessor {
         this.screen = screen;
         spacecraft = screen.getSpacecraft();
         stage = screen.getStage();
+
 
     }
 
@@ -51,7 +62,29 @@ public class InputHandler implements InputProcessor {
 
             case READY:
                 // Si fem clic comencem el joc
-                screen.setCurrentState(GameScreen.GameState.RUNNING);
+
+                int y = Gdx.input.getY();
+                int x = Gdx.input.getX();
+
+                if(((y > 103) && (y < 150))&&((x>118) &&(x<180))) {
+
+                    screen.getScrollHandler().meterAsteroides(-200,55,8);
+
+
+                    screen.setCurrentState(GameScreen.GameState.RUNNING);
+
+                }else if((y>108) &&(y < 158)&&((x>296)&&(x<354))){
+
+                    screen.getScrollHandler().meterAsteroides(-150,75,3);
+
+                    screen.setCurrentState(GameScreen.GameState.RUNNING);
+
+                }
+
+                System.out.println(x);
+                System.out.println(y);
+
+
                 break;
             case RUNNING:
                 previousY = screenY;

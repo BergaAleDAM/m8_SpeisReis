@@ -5,9 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import cat.xtec.ioc.helpers.AssetManager;
 
 public class Background extends Scrollable {
+
+
     public Background(float x, float y, float width, float height, float velocity) {
-        super(x, y, width, height, velocity);
+        super(x,y,width,height,velocity);
     }
+
+
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -15,5 +20,9 @@ public class Background extends Scrollable {
         batch.disableBlending();
         batch.draw(AssetManager.background, position.x, position.y, width, height);
         batch.enableBlending();
+
     }
+
+
+
 }

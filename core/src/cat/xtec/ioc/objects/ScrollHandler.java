@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 import cat.xtec.ioc.screens.GameScreen;
 import cat.xtec.ioc.utils.Methods;
@@ -12,12 +13,15 @@ import cat.xtec.ioc.utils.Settings;
 public class ScrollHandler extends Group {
 
     // Fons de pantalla
+
     Background bg, bg_back;
 
     // Asteroides
     public int puntuacion;
     int numAsteroids;
     private ArrayList<Asteroid> asteroids;
+
+
 
     // Objecte Random
     Random r;
@@ -37,8 +41,15 @@ public class ScrollHandler extends Group {
         // Creem l'objecte random
         r = new Random();
 
+
+    }
+
+
+
+    public void meterAsteroides(int speed, int gap, int cantidad){
+
         // Comencem amb 3 asteroids
-        numAsteroids = 3;
+        numAsteroids = cantidad;
 
         // Creem l'ArrayList
         asteroids = new ArrayList<Asteroid>();
@@ -47,7 +58,7 @@ public class ScrollHandler extends Group {
         float newSize = Methods.randomFloat(Settings.MIN_ASTEROID, Settings.MAX_ASTEROID) * 34;
 
         // Afegim el primer Asteroid a l'Array i al grup
-        Asteroid asteroid = new Asteroid(Settings.GAME_WIDTH, r.nextInt(Settings.GAME_HEIGHT - (int) newSize), newSize, newSize, Settings.ASTEROID_SPEED);
+        Asteroid asteroid = new Asteroid(Settings.GAME_WIDTH, r.nextInt(Settings.GAME_HEIGHT - (int) newSize), newSize, newSize, speed);
         asteroids.add(asteroid);
         addActor(asteroid);
 
@@ -56,13 +67,12 @@ public class ScrollHandler extends Group {
             // Creem la mida al·leatòria
             newSize = Methods.randomFloat(Settings.MIN_ASTEROID, Settings.MAX_ASTEROID) * 34;
             // Afegim l'asteroid.
-            asteroid = new Asteroid(asteroids.get(asteroids.size() - 1).getTailX() + Settings.ASTEROID_GAP, r.nextInt(Settings.GAME_HEIGHT - (int) newSize), newSize, newSize, Settings.ASTEROID_SPEED);
+            asteroid = new Asteroid(asteroids.get(asteroids.size() - 1).getTailX() + gap, r.nextInt(Settings.GAME_HEIGHT - (int) newSize), newSize, newSize, speed);
             // Afegim l'asteroide a l'ArrayList
             asteroids.add(asteroid);
             // Afegim l'asteroide al grup d'actors
             addActor(asteroid);
         }
-
     }
 
     @Override
@@ -124,4 +134,6 @@ public class ScrollHandler extends Group {
     public ArrayList<Asteroid> getAsteroids() {
         return asteroids;
     }
+
+
 }

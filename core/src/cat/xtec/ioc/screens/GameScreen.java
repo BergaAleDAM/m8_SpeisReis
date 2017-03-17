@@ -201,7 +201,9 @@ public class GameScreen implements Screen {
     }
 
     private void updateRunning(float delta) {
+
         stage.act(delta);
+
 
 
         Array<Actor> actores = stage.getActors();
@@ -256,8 +258,12 @@ public class GameScreen implements Screen {
     public void reset() {
 
         // Posem el text d'inici
-        textLayout.setText(AssetManager.font, "Are you\nready?");
+       // textLayout.setText(AssetManager.font, "Are you\nready?");
         // Cridem als restart dels elements.
+        stage.addActor(btnfasi);
+        stage.addActor(btndifisi);
+
+
         spacecraft.reset();
         scrollHandler.reset();
 
